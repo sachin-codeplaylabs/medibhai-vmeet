@@ -1,23 +1,21 @@
-import logo from './logo.svg';
+import PhoneCall from './views/phoneCall';
+import ChatScreen from './views/chatScreen';
+import VideoCall from './views/vIdeoCall';
+import JoinCall from './views/joinCall';
+
 import './App.css';
+
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="call-view__tracks">
+        {/* <PhoneCall/> */}
+        {/* <VideoCall/> */}
+        <ChatScreen/>
+        {/* <JoinCall/> */}
+
+      </div>
     </div>
   );
 }
