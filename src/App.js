@@ -76,7 +76,7 @@ function App() {
         {(() => {
           switch (CurrentScreen) {
             case 'joincall':
-              return <JoinCall isjoinCall={setjoinCall} IsvideoOn={IsvideoOn} setjoinCallEvent={setjoinCallEvent} />;
+              return <JoinCall isjoinCall={setjoinCall} IsvideoOn={IsvideoOn} isMicOn = {isMicOn}  setjoinCallEvent={setjoinCallEvent} />;
             case 'PhoneCall':
               return <PhoneCall />;
             case 'ChatScreen':

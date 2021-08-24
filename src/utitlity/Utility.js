@@ -1,3 +1,5 @@
+import axios from "axios";
+const queryString = require("query-string");
 
 class Utility {
     static getIntialOfName(name){
@@ -13,6 +15,26 @@ class Utility {
         }
         return "NA";
     }    
+
+    static getUserId(){
+      const queryParmas = queryString.parse(window.location.search);
+      var userId = null;
+      if (queryParmas.user && queryParmas.user !== null) {
+        userId = queryParmas.user;
+      } 
+      return userId;
+    }
+    static getRoomId(){
+      const queryParmas = queryString.parse(window.location.search);
+      var roomId = null;
+      if (queryParmas.room && queryParmas.room !== null) {
+        roomId = queryParmas.room;
+      } 
+      return roomId;
+    }
+
+    
+
 }
   
   export default Utility;
