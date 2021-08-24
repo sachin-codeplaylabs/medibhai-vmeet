@@ -79,6 +79,8 @@ html, body{
 }
 
 .call-view__controls-container .call-view__controls {
+	position: absolute;
+	bottom: 0;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -88,8 +90,9 @@ html, body{
 }
 
 .call-view__controls-container .call-view__controls .call-view__controls__icon-btn {
-  height: 55px;
-  width: 55px;
+	
+  height: 40px;
+  width: 40px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -103,7 +106,7 @@ html, body{
 }
 
 .call-view__controls-container .call-view__controls .call-view__controls__icon-btn > i {
-  font-size: 32px;
+  font-size: 28px;
 }
 
 .call-view__controls-container .call-view__controls .call-view__controls__icon-btn.important {
@@ -459,5 +462,12 @@ html, body{
     margin-top: 10px;
 }
 .join-video{
+	border-radius: 10px;
+}
+
+.my-video-placeholder{
+	width: 300px;
+	height: 225px;
+	background-color: gray;
 	border-radius: 10px;
 }

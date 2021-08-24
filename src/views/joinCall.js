@@ -1,47 +1,47 @@
-import React, {Component} from 'react';
+import React, { useEffect, useRef, useState } from "react"
 import PhoneControls from '../components/phoneControls';
+import Button from '@material-ui/core/Button';
 
-export default class JoinCall extends Component {
-    componentDidMount(){
-       let constraints = { audio: false, video: { width:150, height: 300 } };
-       navigator.mediaDevices
-         .getUserMedia(constraints)
-         .then(function(mediaStream) {
-           let video = document.getElementById("myVideo");
-   
-           video.srcObject = mediaStream;
-           video.onloadedmetadata = function(e) {
-             video.play();
-           };
-         })
-         .catch(function(err) {
-           console.log(err.name + ": " + err.message);
-         }); // always check for errors at the end.
-     }
-  render() {
-    return (
-      <div className="remote-track--container">
-      <img className="join-logo" src={"https://medibhai.com/assets/responsive/images/logo.jpg"}/>
-      <div className="phone-call-container join-call-container">        
-      <div class="call-view__tracks__local-track-container">
-        <div class="call-view__tracks__local-track">
-            <br/><br/>
-          <video className="join-video" id="myVideo"></video>
-        </div>
-        <button className="join-btn">Join</button>
-      </div>
-      </div>
-      <div className="call-view__controls-container">
-        <div className="call-view__controls">
-            <div id="btn--toggle-cam" className="call-view__controls__icon-btn">
-              <i className="material-icons-round" style={{color: "#FF3346"}}>videocam</i>
-            </div>
-            <div id="btn--toggle-mic" className="call-view__controls__icon-btn">
-              <i className="material-icons-round" style={{color: "#FF3346"}}>mic</i>
-            </div>
-          </div>
-      </div>
-    </div>
-  ) 
+const JoinCall = (props) => {
+  const myVideo = useRef()
+  // const [stream, setStream] = useState()
+  const [IsmicOn, setMic] = useState(true)
+  const [JoinFriendCall, setJoincall] = useState(false)
+
+  // setState({});
+  useEffect(() => {
+    navigator.mediaDevices.getUserMedia({ video: true, audio: false }).then((stream) => {
+      if (props.IsvideoOn)
+        myVideo.current.srcObject = stream
+    });
+  })
+
+  const joinCallEvent = () => {
+    setJoincall(true);
   }
+
+  return (
+    <>
+      <div className="remote-track--container">
+        <img className="join-logo" src={"https://medibhai.com/assets/responsive/images/logo.jpg"} />
+        <div className="phone-call-container join-call-container">
+          <div className="call-view__tracks__local-track-container">
+            <div className="call-view__tracks__local-track">
+              <br /><br />
+              {
+                props.IsvideoOn
+                  ? <video playsInline className="join-video" muted ref={myVideo} autoPlay style={{ width: "300px" }} />
+                  : <div className="my-video-placeholder"></div>
+              }
+            </div>
+            <br></br>
+
+            <Button variant="contained" onClick={props.setjoinCallEvent} color="primary">Join</Button>
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
+
+export default JoinCall;
