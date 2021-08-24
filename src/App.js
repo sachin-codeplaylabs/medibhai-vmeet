@@ -5,6 +5,7 @@ import ChatScreen from './views/chatScreen';
 import VideoCall from './views/vIdeoCall';
 import JoinCall from './views/joinCall';
 import './App.css';
+import WebrtcCallHandler from './utitlity/WebrtcCallHandler';
 
 function App() {
 
@@ -30,19 +31,35 @@ function App() {
     setChatOn(true);
   }
   const setMicEvent = () => {
+    if(isMicOn){
+      WebrtcCallHandler.getInstance().getMeetingHandler().muteUser(WebrtcCallHandler.getInstance().getMeetingRequest().userId)
+
+    }
+    else{
+      WebrtcCallHandler.getInstance().getMeetingHandler().unmute(WebrtcCallHandler.getInstance().getMeetingRequest().userId)
+
+    }
     setMicOnOff((prev) => { return !prev });
   }
   const setSpeakerEvent = () => {
     setSpeakerOn((prev) => { return !prev });
   }
   const setCallEndedEvent = () => {
+    WebrtcCallHandler.getInstance().cleanUp()
     setCurrentScreen('joincall');
     setjoinCall(false);
     setCallEnded((prev) => { return !prev });
   }
 
   const setVideoEvent = () => {
+    if(IsvideoOn){
+      WebrtcCallHandler.getInstance().getMeetingHandler().pauseCamera(WebrtcCallHandler.getInstance().getMeetingRequest().userId)
 
+    }
+    else{
+      WebrtcCallHandler.getInstance().getMeetingHandler().resumeCamera(WebrtcCallHandler.getInstance().getMeetingRequest().userId)
+
+    }
     if (isjoinCall)
       setCurrentScreen('VideoCall')
 

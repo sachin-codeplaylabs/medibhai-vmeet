@@ -1,4 +1,3 @@
-import axios from "axios";
 const queryString = require("query-string");
 
 class Utility {

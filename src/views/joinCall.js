@@ -69,9 +69,10 @@ const JoinCall = (props) => {
 
 
   const onConnected = () =>{
+    console.log("onConnected");
     WebrtcCallHandler.getInstance().getMeetingHandler().startMeeting();
-
-    setJoincall(true);
+    props.setjoinCallEvent();
+    // setJoincall(true);
 
   }
   const onPermissionError = () =>{
@@ -132,7 +133,7 @@ const JoinCall = (props) => {
     }
   }
   const joinCallEvent = () => {
-    WebrtcCallHandler.getInstance().getMeetingHandler().startLocalStream(props.IsvideoOn,props.isMicOn)
+    WebrtcCallHandler.getInstance().getMeetingHandler().startLocalStream(true,true)
   }
 
   return (
@@ -152,7 +153,7 @@ const JoinCall = (props) => {
             <br></br>
 
               {shouldEnableJoin ?
-            <Button variant="contained" onClick={props.setjoinCallEvent} color="primary">Join</Button>
+            <Button variant="contained" onClick={joinCallEvent} color="primary">Join</Button>
             : null
               }
           </div>
